@@ -1,8 +1,0 @@
-//
-// Created by roses on 27/11/2025.
-//
-
-#ifndef VAMPIRESVSHUMANS_CITY_H
-#define VAMPIRESVSHUMANS_CITY_H
-
-#endif //VAMPIRESVSHUMANS_CITY_H

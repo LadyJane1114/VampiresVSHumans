@@ -1,6 +1,8 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include "Organism.h"
+#include "Island.h"
 
 using namespace std;
 
@@ -13,18 +15,18 @@ void ClearScreen()
 }
 
 int main() {
-    City *city = new City();
-    chrono:: milliseconds interval(INTERAVAL);
+    Island *island = new Island();
+    chrono:: milliseconds interval(INTERVAL);
 
-    while(city->hasDiversity()) { //while both humans and vampires exist
+    while(island->hasDiversity()) { //while both humans and vampires exist
         this_thread::sleep_for(interval);
         ClearScreen();
-        city->step();
-        city->reset(); //resets moved flags
-        city->countOrganisms(V or H goes here);// run once for each type
-        cout << *city; //prints city
-        cout << "GENERATION " << city->getGeneration() << endl;
-        cout << "HUMANS: " << city->countType(HUMAN_CH) << endl;
-        cout << "VAMPIRES: " << city->countType(VAMPIRE_CH) << endl;
-    }
-}
+        island->step();
+        island->reset(); //resets moved flags
+        island->countOrganisms(V or H goes here);// run once for each type
+        cout << *island; //prints city
+        cout << "GENERATION " << island->getGeneration() << endl;
+        cout << "HUMANS: " << island->countType(*HUMAN_CH) << endl;
+        cout << "VAMPIRES: " << island->countType(*VAMPIRE_CH) << endl;
+    } // end of while
+} // end of main

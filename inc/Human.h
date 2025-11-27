@@ -1,8 +1,17 @@
-//
-// Created by roses on 27/11/2025.
-//
 
 #ifndef VAMPIRESVSHUMANS_HUMAN_H
 #define VAMPIRESVSHUMANS_HUMAN_H
+
+#include "Organism.h"
+
+class Human : public Organism
+{
+public:
+    Human();
+    Human( City *city, int size);
+    virtual ~Human();
+
+    void turn(); //all things a human may do on their turn. i.e. a move, and if allowed a recruitment
+};
 
 #endif //VAMPIRESVSHUMANS_HUMAN_H
