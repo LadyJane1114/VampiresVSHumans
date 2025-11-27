@@ -1,0 +1,8 @@
+//
+// Created by roses on 27/11/2025.
+//
+
+#ifndef VAMPIRESVSHUMANS_VAMPIRE_H
+#define VAMPIRESVSHUMANS_VAMPIRE_H
+
+#endif //VAMPIRESVSHUMANS_VAMPIRE_H
