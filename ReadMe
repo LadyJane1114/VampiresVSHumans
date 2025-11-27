@@ -1,3 +1,3 @@
-<h1> Vampires vs Humans </h1>
-<p>A simulation coded in C++.</p>
-<p>Vampires can move in all directions, and will either drain humans or turn them. Humans can only move in cardinal directions and can hide in buildings (vampires cannot enter without being invited in, after all).</p>
+#### Vampires vs Humans
+A simulation coded in C++.
+Vampires can move in all directions, and will either drain humans or turn them. Humans can only move in cardinal directions and can hide in buildings (vampires cannot enter without being invited in, after all).
