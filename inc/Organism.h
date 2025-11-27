@@ -21,7 +21,7 @@ class Organism{
     virtual ~Organism();
     virtual void turn() = 0;
 
-    friend ostream& operator<<(ostream &output, Organism &organism);
+    friend ostream& operator<<(ostream &output, Organism &organism){};
 }; //end of Class organism
 
 

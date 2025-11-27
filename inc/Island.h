@@ -1,35 +1,39 @@
+#ifndef VAMPIRESVSHUMANS_ISLAND_H
+#define VAMPIRESVSHUMANS_ISLAND_H
 
-#ifndef VAMPIRESVSHUMANS_CITY_H
-#define VAMPIRESVSHUMANS_CITY_H
-
-#include <iostream>
+#include "Organism.h"
+#include "Human.h"
+#include "Vampire.h"
 #include "GameSpecs.h"
-
-using namespace std;
-
-class Organism;
+#include <vector>
+#include <iostream>
 
 class Island {
-protected:
-    Organism *grid[CROCKETT_ISLAND][CROCKETT_ISLAND];
-    int generation;
+private:
+    Organism* grid[CROCKETT_ISLAND][CROCKETT_ISLAND];
 
 public:
     Island();
-    virtual ~Island();
+    ~Island();
 
-    Organism *getOrganism(int x, int y);
-    void setOrganism(Organism *organism, int x, int y);
+    void initialize(); // populate starting humans and vampires
 
-    void step();
-    void reset();
-    int countType(char);
-    friend ostream &operator<<(ostream &output, Island &island);
+    bool inBounds(int x, int y) const;
+    bool isEmpty(int x, int y) const;
+    bool isHuman(int x, int y) const;
 
-    void col(int c);
+    void addHuman(int x, int y);
+    void addVampire(int x, int y);
+    void removeOrganism(int x, int y);
 
-    bool hasDiversity();
-}; //end of island
+    void moveOrganism(int oldX, int oldY, int newX, int newY);
+
+    void resetMoves(); // set all moved flags to false
+    void turnAll(); // call turn() for all organisms
+
+    friend std::ostream& operator<<(std::ostream& os, const Island& isl);
 
 
-#endif //VAMPIRESVSHUMANS_CITY_H
+};
+
+#endif // VAMPIRESVSHUMANS_ISLAND_H

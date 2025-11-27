@@ -23,7 +23,8 @@ int main() {
         ClearScreen();
         island->step();
         island->reset(); //resets moved flags
-        island->countOrganisms(V or H goes here);// run once for each type
+        island->countOrganisms(VAMPIRE_CH);
+        island->countOrganisms(HUMAN_CH);// run once for each type
         cout << *island; //prints city
         cout << "GENERATION " << island->getGeneration() << endl;
         cout << "HUMANS: " << island->countType(*HUMAN_CH) << endl;

@@ -12,10 +12,16 @@ const int HUMAN_BREED = 3;
 const int VAMPIRE_BREED = 8;
 const int VAMPIRE_STARVE = 3;
 
-const char* HUMAN_CH = "\033[36m H \033[0m"; // H for a human ASCII IS 72   - CYAN TEXT
-const char* SPACE_CH = "\033[37m - \033[0m"; // - for empty space ASCII IS 45 - WHITE TEXT
-const char* VAMPIRE_CH = "\033[31m v \033[0m"; // V for vampire  ASCII IS 86 - RED TEXT
-const char* BUILDING_CH = "\033[47m # \033[0m"; // # for a building ASCII IS 35 - WHITE BG
+const char HUMAN_CH = 'H';
+const char VAMPIRE_CH = 'v';
+const char SPACE_CH = '-';
+const char BUILDING_CH = '#';
+
+const char* COLOR_CYAN  = "\033[36m";
+const char* COLOR_RED   = "\033[31m";
+const char* COLOR_WHITE = "\033[37m";
+const char* BG_WHITE    = "\033[47m";
+const char* COLOR_RESET = "\033[0m";
 
 
 const int INTERVAL = 300;

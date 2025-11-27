@@ -22,4 +22,8 @@ add_executable(VampiresVSHumans
         inc/Organism.h
         inc/Vampire.h
         main.cpp
-        ReadMe)
+        ReadMe
+        src/Island.cpp
+        src/Human.cpp
+        src/Vampire.cpp
+        src/Organism.cpp)
