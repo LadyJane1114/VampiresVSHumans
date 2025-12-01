@@ -11,7 +11,6 @@ class Organism{
     protected:
         int x;
         int y;
-        int size;
         bool moved;
         Island* island;
 
@@ -21,11 +20,12 @@ class Organism{
     virtual ~Organism();
     virtual void turn() = 0;
 
-    void setPosition(int newX, int newY) { x = newX; y = newY; }
-    void setMoved(bool m) { moved = m; }
-    bool hasMoved() const { return moved; }
+    void setPosition(int newX, int newY);
+    void setMoved(bool m);
+    bool hasMoved() const;
 
-    friend ostream& operator<<(ostream &output, Organism &organism){};
+    virtual char getType() const = 0;
+    friend ostream& operator<<(ostream &output, Organism &organism);
 }; //end of Class organism
 
 
