@@ -7,9 +7,9 @@ const int CROCKETT_ISLAND = 20;
 const int HUMAN_STARTCOUNT = 100;
 const int VAMPIRE_STARTCOUNT = 5;
 
-const int HUMAN_BREED = 3;
+const int HUMAN_RECRUIT = 3;
 
-const int VAMPIRE_BREED = 8;
+const int VAMPIRE_SIRE = 8;
 const int VAMPIRE_STARVE = 3;
 
 const char HUMAN_CH = 'H';
