@@ -21,6 +21,10 @@ class Organism{
     virtual ~Organism();
     virtual void turn() = 0;
 
+    void setPosition(int newX, int newY) { x = newX; y = newY; }
+    void setMoved(bool m) { moved = m; }
+    bool hasMoved() const { return moved; }
+
     friend ostream& operator<<(ostream &output, Organism &organism){};
 }; //end of Class organism
 

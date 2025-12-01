@@ -26,10 +26,16 @@ public:
     void addVampire(int x, int y);
     void removeOrganism(int x, int y);
 
+    void countOrganisms(char organismChar);
+    int getGeneration() const;
+    int countType(char organismChar) const;
+
     void moveOrganism(int oldX, int oldY, int newX, int newY);
 
     void resetMoves(); // set all moved flags to false
     void turnAll(); // call turn() for all organisms
+
+    bool hasDiversity();
 
     friend std::ostream& operator<<(std::ostream& os, const Island& isl);
 
