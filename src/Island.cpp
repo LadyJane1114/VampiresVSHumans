@@ -88,15 +88,13 @@ void Island::removeOrganism(int x, int y) {
 
 //move organism from one tile to another
 void Island::moveOrganism(int oldX, int oldY, int newX, int newY) {
-    if (!inBounds(oldX, oldY) || !inBounds(newX, newY)) return;
-
+    if (grid[newX][newY] != nullptr) {
+        delete grid[newX][newY]; // remove old organism safely
+    }
     grid[newX][newY] = grid[oldX][oldY];
     grid[oldX][oldY] = nullptr;
-
-    if (grid[newX][newY] != nullptr) {
+    if (grid[newX][newY] != nullptr)
         grid[newX][newY]->setPosition(newX, newY);
-    }
-
 
 }
 
@@ -141,7 +139,7 @@ int Island::countType(char organismChar) const {
 
     for (int r = 0; r < CROCKETT_ISLAND; r++) {
         for (int c = 0; c < CROCKETT_ISLAND; c++) {
-            if (grid[r][c] != nullptr) {
+            if (grid[r][c] == nullptr) {
                 continue;
             }
             if (organismChar == HUMAN_CH &&

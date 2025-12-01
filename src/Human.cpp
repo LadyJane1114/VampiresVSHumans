@@ -19,8 +19,14 @@ Human::Human(Island* island, int s) : Organism(island, s) {
 Human::~Human() {}
 // turn : move, recruit
 
+
+char Human::getType() const {
+    return HUMAN_CH;  // or 'H'
+}
+
 void Human::turn() {
-    if (moved)return; //already moved!
+    cout << "Human at (" << x << "," << y << ") taking turn\n";
+    if (hasMoved()) return; //already moved!
 
     std::vector<std::pair<int,int>>emptySpaces;
 

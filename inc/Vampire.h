@@ -11,6 +11,7 @@ public:
 
     void turn() override; // move/eat, breed, starve
 
+    char getType() const override;
     private:
     int hunger; // counts turns without eating
 };

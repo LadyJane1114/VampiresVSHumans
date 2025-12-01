@@ -15,7 +15,6 @@ add_executable(VampiresVSHumans
         .idea/VampiresVSHumans.iml
         .idea/vcs.xml
         .idea/workspace.xml
-        inc/Building.h
         inc/GameSpecs.h
         inc/Human.h
         inc/Island.h

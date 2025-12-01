@@ -1,7 +1,6 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "Organism.h"
 #include "Island.h"
 
 using namespace std;
