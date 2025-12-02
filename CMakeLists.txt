@@ -17,12 +17,12 @@ add_executable(VampiresVSHumans
         .idea/workspace.xml
         inc/GameSpecs.h
         inc/Human.h
-        inc/Island.h
+        inc/CrockettIsland.h
         inc/Organism.h
         inc/Vampire.h
         main.cpp
         ReadMe
-        src/Island.cpp
+        src/CrockettIsland.cpp
         src/Human.cpp
         src/Vampire.cpp
         src/Organism.cpp)

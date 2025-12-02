@@ -1,32 +1,48 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "Island.h"
+#include "CrockettIsland.h"
 
 using namespace std;
 
 
 
-//Clear screen to go to the next screen
-void ClearScreen()
-{
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-}
-
 int main() {
-    Island *island = new Island();
-    chrono:: milliseconds interval(INTERVAL);
+    bool shouldContinue;
+    // Create the city
+    CrockettIsland crockettIsland;
 
-    while(island->hasDiversity()) { //while both humans and vampires exist
-        this_thread::sleep_for(interval);
-        ClearScreen();
-        island->turnAll();
-        island->resetMoves(); //resets moved flags
-        island->countOrganisms(VAMPIRE_CH);
-        island->countOrganisms(HUMAN_CH);// run once for each type
-        cout << *island; //prints city
-        cout << "GENERATION " << island->getGeneration() << endl;
-        cout << "HUMANS: " << island->countType(HUMAN_CH) << endl;
-        cout << "VAMPIRES: " << island->countType(VAMPIRE_CH) << endl;
-    } // end of while
+    cout << "\n===========================================\n";
+    cout << "        Welcome to Crockett Island!\n";
+    cout << "===========================================\n";
+    cout << "\nLegend:\n";
+    cout << "  O = Human (Cyan)\n";
+    cout << "  V = Vampire (Red)\n";
+    cout << "  - = Empty space\n\n";
+
+    // Display initial state
+    cout << "INITIAL STATE:\n";
+    shouldContinue = crockettIsland.runSimulation();
+
+    // Main simulation loop
+    int totalGenerations = GENERATION;
+
+    for (int i = 1; i < totalGenerations && shouldContinue; i++) {
+        this_thread::sleep_for(chrono::milliseconds(INTERVAL));
+
+        //one generation
+        shouldContinue = crockettIsland.runSimulation();
+
+    }
+
+    if (shouldContinue) {
+        cout << "\nThe humans and vampires have found harmony!" << endl;
+    }
+
+    cout << "\n===========================================\n";
+    cout << "                   AMEN\n";
+    cout << "===========================================\n";
+
+    return 0;
+
 } // end of main

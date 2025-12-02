@@ -6,26 +6,26 @@
 
 using namespace std;
 
-class Island;
+class CrockettIsland;
 class Organism{
     protected:
-        int x;
-        int y;
-        bool moved;
-        Island* island;
+        int x; // x position on the grid <- ->
+        int y; // y position on grid ^ v
+        bool moved; // track if the organism has moved on this turn
+        CrockettIsland* crockettIsland; // pointer to island Grid
+        char organismType;
 
     public:
-    Organism();
-    Organism(Island *island, int size);
-    virtual ~Organism();
+    Organism(CrockettIsland *crockettIslandPtr, int xLocation, int yLocation);
+    virtual ~Organism() {};
     virtual void turn() = 0;
 
-    void setPosition(int newX, int newY);
-    void setMoved(bool m);
-    bool hasMoved() const;
+    // Getters
+    char getType() const { return organismType; }
+    bool hasMoved() const { return moved; }
 
-    virtual char getType() const = 0;
-    friend ostream& operator<<(ostream &output, Organism &organism);
+    // Setters
+    void setMoved(bool val) { moved = val; }
 }; //end of Class organism
 
 

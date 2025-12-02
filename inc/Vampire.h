@@ -4,16 +4,14 @@
 #include "Organism.h"
 
 class Vampire : public Organism {
+private:
+    int convertCounter; // counts when a vampire can convert another vampire
+    int hunger; // counts steps since last meal
+
 public:
-    Vampire();
-    Vampire(Island* island, int size);
-    virtual ~Vampire();
+    Vampire(CrockettIsland* crockettIslandPtr, int xLocation, int yLocation);
 
-    void turn() override; // move/eat, breed, starve
-
-    char getType() const override;
-    private:
-    int hunger; // counts turns without eating
+    void turn() override; // move/eat, sire, starve
 };
 
 #endif // VAMPIRESVSHUMANS_VAMPIRE_H
