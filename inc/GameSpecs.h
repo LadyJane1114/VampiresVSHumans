@@ -18,7 +18,7 @@ const char SPACE_CH = '-';
 const char BUILDING_CH = '#';
 
 const int INTERVAL = 700;
-const int GENERATION = 100; // actual 1000
+const int GENERATION = 1000; // actual 1000
 
 
 
