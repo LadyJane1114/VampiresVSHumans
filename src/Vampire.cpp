@@ -34,11 +34,13 @@ void Vampire::turn() {
 
             if (crockettIsland->isValidLocation(newX, newY)) {
                 Organism* org = crockettIsland->getOrganism(newX, newY);
-                if (org != nullptr && org->getType() == 'H') {
-                    humanLocations.push_back(make_pair(newX, newY));
-                } else if (org == nullptr) {
-                    emptyLocations.push_back(make_pair(newX, newY));
+                if (org == nullptr) {
+                    emptyLocations.push_back({newX, newY});
                 }
+                else if (org->getType() == HUMAN_CH) {
+                    humanLocations.push_back({newX, newY});
+                }
+
             }
         }
     }
@@ -100,7 +102,7 @@ void Vampire::turn() {
 
                 if (crockettIsland->isValidLocation(newX, newY)) {
                     Organism* org = crockettIsland->getOrganism(newX, newY);
-                    if (org != nullptr && org->getType() == 'H') {
+                    if (org != nullptr && org->getType() == HUMAN_CH) {
                         humanSpots.push_back(make_pair(newX, newY));
                     }
                 }
@@ -130,7 +132,9 @@ void Vampire::turn() {
 
     //STARVE: After 3 generations without eating, a vampire will starve, losing their vampire powers and becoming human again... for now.
     if (hunger >= VAMPIRE_STARVE) {
+        delete this;
         Human* newHuman = new Human(crockettIsland, x, y);
         crockettIsland->setOrganism(x, y, newHuman);
+        return;
     }
 }

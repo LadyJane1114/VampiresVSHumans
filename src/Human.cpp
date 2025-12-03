@@ -11,10 +11,29 @@ using namespace std;
 Human::Human(CrockettIsland *crockettIslandPtr, int xLocation, int yLocation) : Organism(crockettIslandPtr,xLocation,yLocation){
     organismType = HUMAN_CH;
     recruitCounter = 0;
+    isHiding = false;
+    hideTimer= 0;
+    safeHouse = nullptr;
 }
 
 //turn, all human turn actions
 void Human::turn() {
+
+    if (isHiding) {
+        hideTimer--;
+        if (hideTimer <= 0) {
+            exitBuilding();  // exit building next turn
+        }
+        return;  // cannot move, cannot recruit, cannot die, safe this turn
+    }
+    if (moved) {
+        Building* b = buildingNearby();
+        if (b != nullptr) {
+            startHiding(b); //immediately start hiding
+            return;
+        }
+    }
+
     // act only if you haven't moved
     if (moved) return;
 
@@ -92,6 +111,72 @@ void Human::turn() {
             recruitCounter = 0;
         }
     }
-
 }
+
+Building* Human::buildingNearby() {
+    int locations[4][2] = {{1,0},{-1,0},{0,1},{0,-1}};
+    for (auto &location : locations) {
+        int nx = x + location[0];
+        int ny = y + location[1];
+
+        Organism* organism = crockettIsland->getOrganism(nx, ny);
+        Building* b = dynamic_cast<Building*>(organism);
+        if (b && !b->isOccupied()) {
+            return b;
+        }
+    }
+    return nullptr;
+}
+
+void Human::startHiding(Building* b) {
+    //leave old place
+    crockettIsland->setOrganism(x,y,nullptr);
+
+    // move human into building
+    x = b->getX();
+    y = b->getY();
+
+    // human no longer on grid and is safe (but is tracking occupancy)
+    safeHouse = b;
+    b->setOccupied(true);
+
+    isHiding = true;
+    hideTimer = 1;
+
+    //reset recruit counter
+    recruitCounter = 0;
+}
+
+void Human::exitBuilding() {
+    if (!safeHouse) return;
+
+    safeHouse->setOccupied(false);
+
+    int bx = safeHouse->getX();
+    int by = safeHouse->getY();
+    bool movedOut = false;
+
+    int locations[4][2] = {{1,0},{-1,0},{0,1},{0,-1}};
+    for (auto &location : locations) {
+        int nx = bx + location[0];
+        int ny = by + location[1];
+
+        if (crockettIsland->isValidLocation(nx, ny) && crockettIsland->getOrganism(nx, ny) == nullptr) {
+            x = nx;
+            y = ny;
+            crockettIsland->setOrganism(x, y, this);
+            movedOut = true;
+            break;
+        }
+    }
+    //edge case: trapped
+    isHiding = !movedOut;
+    hideTimer = isHiding ? 1 : 0;
+
+    if (!isHiding) {
+        // Human has successfully exited, building no longer tracked
+        safeHouse = nullptr;
+    }
+}
+
 

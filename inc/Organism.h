@@ -23,6 +23,8 @@ class Organism{
     // Getters
     char getType() const { return organismType; }
     bool hasMoved() const { return moved; }
+    int getX() const { return x; }
+    int getY() const { return y; }
 
     // Setters
     void setMoved(bool val) { moved = val; }

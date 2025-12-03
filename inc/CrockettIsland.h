@@ -13,6 +13,7 @@ private:
     int humansStart;
     int vampiresTotal;
     int vampiresStart;
+    int buildings;
 
 public:
     CrockettIsland();

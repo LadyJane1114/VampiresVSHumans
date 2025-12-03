@@ -25,4 +25,6 @@ add_executable(VampiresVSHumans
         src/CrockettIsland.cpp
         src/Human.cpp
         src/Vampire.cpp
-        src/Organism.cpp)
+        src/Organism.cpp
+        inc/Building.h
+        src/Building.cpp)
