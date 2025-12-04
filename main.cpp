@@ -36,6 +36,9 @@ int main() {
     // Main simulation loop
     int totalGenerations = GENERATION;
 
+    /////
+    /////TIMER IS HERE  !!!
+    /////
     for (int i = 1; i < totalGenerations && shouldContinue; i++) {
         this_thread::sleep_for(chrono::milliseconds(INTERVAL));
 

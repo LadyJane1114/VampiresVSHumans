@@ -132,9 +132,10 @@ void Vampire::turn() {
 
     //STARVE: After 3 generations without eating, a vampire will starve, losing their vampire powers and becoming human again... for now.
     if (hunger >= VAMPIRE_STARVE) {
-        delete this;
+        crockettIsland->setOrganism(x, y, nullptr); // remove from grid first
         Human* newHuman = new Human(crockettIsland, x, y);
         crockettIsland->setOrganism(x, y, newHuman);
+        delete this; // now safe, grid no longer points to this
         return;
     }
 }

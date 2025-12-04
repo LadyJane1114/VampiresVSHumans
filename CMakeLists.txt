@@ -26,5 +26,4 @@ add_executable(VampiresVSHumans
         src/Human.cpp
         src/Vampire.cpp
         src/Organism.cpp
-        inc/Building.h
-        src/Building.cpp)
+)

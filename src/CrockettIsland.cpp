@@ -8,15 +8,11 @@
 #include "Human.h"
 #include "CrockettIsland.h"
 
-#include "Building.h"
-
 using namespace std;
 
 #define HumanCyan "\033[36m"
 #define VampRed "\033[31m"
 #define IslandWhite "\033[37m"
-#define EmptyColour  "\033[42m"
-#define OccupiedColour "\033[44m"
 #define AestheticYellow  "\033[33m"
 #define ColorReset "\033[0m"
 
@@ -29,7 +25,6 @@ CrockettIsland::CrockettIsland() {
     humansStart = HUMAN_STARTCOUNT;
     vampiresTotal = VAMPIRE_STARTCOUNT;
     vampiresStart = VAMPIRE_STARTCOUNT;
-    buildings = BUILDING_TOTAL;
 
     //random
     srand(time(0));
@@ -41,24 +36,13 @@ CrockettIsland::CrockettIsland() {
         }
     }
 
-    //place buildings
-    for (int b = 0; b < buildings; b++) {
-        int x,y;
-        do {
-            x = rand() % ISLAND_GRID;
-            y = rand() % ISLAND_GRID;
-        } while (grid[x][y] != nullptr);
-
-        grid[x][y] = new Building(this,x,y);
-    }
-
     //place humans and vampires
     for (int o = 0; o < humansStart; o++) {
         int x, y;
         do {
             x = rand() % ISLAND_GRID;
             y = rand() % ISLAND_GRID;
-        } while (grid[x][y] != nullptr && grid[x][y]->getType()==BUILDING_CH);
+        } while (grid[x][y] != nullptr);
 
         grid[x][y] = new Human(this,x,y);
     }
@@ -201,13 +185,6 @@ ostream& operator<<(std::ostream& os, const CrockettIsland& crockettIsland) {
                     os << HumanCyan << HUMAN_CH << ColorReset;
                 } else if (crockettIsland.grid[r][c]->getType() == VAMPIRE_CH) {
                     os << VampRed << VAMPIRE_CH << ColorReset;
-                } else if (crockettIsland.grid[r][c]->getType() == BUILDING_CH) {
-                    Building* b = dynamic_cast<Building*>(crockettIsland.grid[r][c]);
-                    if (b && b->isOccupied()) {
-                        os << OccupiedColour << BUILDING_CH << ColorReset;
-                    } else {
-                        os << EmptyColour << BUILDING_CH << ColorReset;
-                    }
                 }
             } else {
                 os << SPACE_CH;  // Empty cell
